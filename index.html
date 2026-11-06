@@ -225,19 +225,19 @@
                 </button>
             </div>
 
-            <!-- Video Options Container (Dynamic from Backend) -->
+            <!-- Video Options Container -->
             <div id="videoOptions" class="space-y-3">
                 <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">উপলব্ধ ভিডিও কোয়ালিটি:</h4>
                 <div id="videoFormatsList" class="space-y-3">
-                    <!-- Dynamic Video Formats will load here -->
+                    <!-- Dynamic Video Formats -->
                 </div>
             </div>
 
-            <!-- Audio Options Container (Dynamic from Backend) -->
+            <!-- Audio Options Container -->
             <div id="audioOptions" class="space-y-3 hidden">
                 <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">উপলব্ধ অডিও ফরম্যাট:</h4>
                 <div id="audioFormatsList" class="space-y-3">
-                    <!-- Dynamic Audio Formats will load here -->
+                    <!-- Dynamic Audio Formats -->
                 </div>
             </div>
 
@@ -337,7 +337,7 @@
                 <p id="reviewsSubheading" class="text-gray-400 text-sm">বিশ্বজুড়ে প্রতিদিন ব্যবহারকারীদের দেওয়া অসাধারণ রিভিউ!</p>
             </div>
 
-            <!-- Dynamic Live Reviews Feed Container -->
+            <!-- Reviews Grid -->
             <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg relative transition-all duration-500">
                     <div class="flex items-center justify-between mb-4">
@@ -606,55 +606,69 @@
 
                 if (data.status === 'success') {
                     // ভিডিও এম্বেড প্লেয়ার ও টাইটেল সেট করা
-                    document.getElementById('videoEmbed').src = data.embedUrl;
+                    // ইউটিউব লিংকের জন্য সঠিক এম্বেড আইডি বের করা
+                    let embedUrl = url;
+                    if (url.includes('youtu.be/')) {
+                        const videoId = url.split('youtu.be/')[1].split('?')[0];
+                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                    } else if (url.includes('watch?v=')) {
+                        const videoId = url.split('watch?v=')[1].split('&')[0];
+                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                    }
+
+                    document.getElementById('videoEmbed').src = embedUrl;
                     document.getElementById('videoTitleText').textContent = data.title;
 
-                    // ফরম্যাটগুলো ডাইনামিকভাবে রেন্ডার করা
                     const videoFormatsList = document.getElementById('videoFormatsList');
                     const audioFormatsList = document.getElementById('audioFormatsList');
                     videoFormatsList.innerHTML = '';
                     audioFormatsList.innerHTML = '';
 
-                    let videoCount = 0;
-                    let audioCount = 0;
+                    // ফরম্যাটগুলো রেন্ডার করা
+                    if (data.formats && data.formats.length > 0) {
+                        data.formats.forEach(f => {
+                            const itemHtml = `
+                                <div class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/50 hover:bg-white/10 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm">
+                                            <i class="fa-solid fa-film"></i>
+                                        </div>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-black text-white text-base">${f.resolution}</span>
+                                                <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">${f.ext.toUpperCase()}</span>
+                                            </div>
+                                            <span class="text-xs text-gray-400">${f.filesize}</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="triggerAdBeforeDownload('${f.url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
+                                        <i class="fa-solid fa-download"></i> <span class="downloadBtnText">${currentLang === 'bn' ? 'ডাউনলোড' : 'Download'}</span>
+                                    </button>
+                                </div>
+                            `;
+                            videoFormatsList.innerHTML += itemHtml;
+                        });
 
-                    data.formats.forEach(f => {
-                        const isAudio = f.ext === 'm4a' || f.ext === 'mp3' || f.ext === 'webm' && f.resolution.includes('audio');
-                        
-                        const itemHtml = `
+                        // অডিও অপশনের জন্য সেই একই লিংক ব্যবহার করা
+                        audioFormatsList.innerHTML = `
                             <div class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/50 hover:bg-white/10 transition-all">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm">
-                                        <i class="fa-solid ${isAudio ? 'fa-music' : 'fa-film'}"></i>
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm">
+                                        <i class="fa-solid fa-music"></i>
                                     </div>
                                     <div>
                                         <div class="flex items-center gap-2">
-                                            <span class="font-black text-white text-base">${f.resolution}</span>
-                                            <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">${f.ext.toUpperCase()}</span>
+                                            <span class="font-black text-white text-base">MP3 High Quality</span>
+                                            <span class="bg-purple-500/20 text-purple-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-500/30">MP3</span>
                                         </div>
-                                        <span class="text-xs text-gray-400">${f.filesize}</span>
+                                        <span class="text-xs text-gray-400">Audio Format</span>
                                     </div>
                                 </div>
-                                <button onclick="triggerAdBeforeDownload('${f.url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
+                                <button onclick="triggerAdBeforeDownload('${data.formats[0].url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
                                     <i class="fa-solid fa-download"></i> <span class="downloadBtnText">${currentLang === 'bn' ? 'ডাউনলোড' : 'Download'}</span>
                                 </button>
                             </div>
                         `;
-
-                        if (isAudio) {
-                            audioFormatsList.innerHTML += itemHtml;
-                            audioCount++;
-                        } else {
-                            videoFormatsList.innerHTML += itemHtml;
-                            videoCount++;
-                        }
-                    });
-
-                    if (videoCount === 0) {
-                        videoFormatsList.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">কোনো ভিডিও ফরম্যাট পাওয়া যায়নি।</p>`;
-                    }
-                    if (audioCount === 0) {
-                        audioFormatsList.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">কোনো অডিও ফরম্যাট পাওয়া যায়নি।</p>`;
                     }
 
                     resultsContainer.classList.remove('hidden');
@@ -720,8 +734,6 @@
 
         function startActualDownload() {
             document.getElementById('preAdModal').classList.add('hidden');
-            
-            // রিয়েল ডাউনলোড লিংকে রিডাইরেক্ট করা
             window.open(pendingDownloadUrl, '_blank');
 
             setTimeout(() => {
@@ -747,91 +759,6 @@
             }
         }
         setInterval(updateLiveCounter, 2000);
-
-        // Dynamic 5-Star Reviews Refresh Engine
-        const mockNewReviews = {
-            bn: [
-                { name: "মাহমুদুল হাসান", initial: "ম", color: "from-purple-500 to-pink-500", text: "একদম মাখনের মতো স্পিড! ডাউনলোড করতে কোনো ঝামেলার মুখোমুখি হতে হয়নি।" },
-                { name: "ফারহানা জাহান", initial: "ফ", color: "from-cyan-500 to-blue-500", text: "অডিও (MP3) ডাউনলোডের অপশনটা সবচেয়ে বেশি কার্যকর লেগেছে। দারুণ কাজ!" },
-                { name: "আরিফুর রহমান", initial: "আ", color: "from-amber-500 to-orange-500", text: "TM.Studio ইউজার ফ্রেন্ডলি এবং এর ডার্ক ডিজাইনটা অনেক সুন্দর!" },
-                { name: "সাইফুল ইসলাম", initial: "স", color: "from-emerald-500 to-teal-500", text: "মোবাইলে কোনো অ্যাড পেজ রিডাইরেক্ট না করেই সহজে ডাউনলোড হলো। ধন্যবাদ!" }
-            ],
-            en: [
-                { name: "David Miller", initial: "D", color: "from-rose-500 to-red-500", text: "Instant 1080p download speed! Absolutely fast and effortless." },
-                { name: "Sophia Watson", initial: "S", color: "from-violet-500 to-purple-500", text: "The live preview player before download saved me so much data!" },
-                { name: "Alex Turner", initial: "A", color: "from-emerald-500 to-green-500", text: "Best YouTube video and MP3 audio converter online. 10/10 rating!" }
-            ]
-        };
-
-        function addDynamicReview() {
-            const list = mockNewReviews[currentLang];
-            const randomReview = list[Math.floor(Math.random() * list.length)];
-            const reviewsGrid = document.getElementById('reviewsGrid');
-
-            if (!reviewsGrid) return;
-
-            const newCard = document.createElement('div');
-            newCard.className = "glass-card p-6 rounded-2xl border-2 border-rose-500/50 shadow-2xl relative opacity-0 transform -translate-y-4 transition-all duration-500";
-            newCard.innerHTML = `
-                <div class="absolute -top-3 right-4 bg-gradient-to-r from-rose-500 to-purple-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> NEW
-                </div>
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-full bg-gradient-to-tr ${randomReview.color} text-white flex items-center justify-center font-bold text-lg shadow-md">
-                            ${randomReview.initial}
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white text-sm">${randomReview.name}</h4>
-                            <div class="flex text-amber-400 text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="text-[10px] text-rose-400 font-bold">${currentLang === 'bn' ? 'এইমাত্র' : 'Just Now'}</span>
-                </div>
-                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                    "${randomReview.text}"
-                </p>
-            `;
-
-            reviewsGrid.insertBefore(newCard, reviewsGrid.firstChild);
-            if (reviewsGrid.children.length > 6) {
-                reviewsGrid.removeChild(reviewsGrid.lastChild);
-            }
-
-            setTimeout(() => {
-                newCard.classList.remove('opacity-0', '-translate-y-4');
-            }, 100);
-        }
-
-        setInterval(addDynamicReview, 70000);
-
-        // Live Activity Toast Engine
-        const sampleLocations = ["ঢাকা", "চট্টগ্রাম", "সিলেট", "রাজশাহী", "London", "New York", "Dubai"];
-        const sampleQualities = ["1080p HD Video", "720p Video", "MP3 320kbps Audio"];
-
-        function triggerLiveActivityPopup() {
-            const toast = document.getElementById('liveActivityToast');
-            const text = document.getElementById('liveActivityText');
-            if (!toast) return;
-
-            const loc = sampleLocations[Math.floor(Math.random() * sampleLocations.length)];
-            const qual = sampleQualities[Math.floor(Math.random() * sampleQualities.length)];
-
-            if (currentLang === 'bn') {
-                text.innerHTML = `<span class="font-bold text-white">ব্যবহারকারী (${loc})</span> মাত্র <span class="text-rose-400 font-bold">${qual}</span> ডাউনলোড করেছেন`;
-            } else {
-                text.innerHTML = `<span class="font-bold text-white">User from ${loc}</span> downloaded <span class="text-rose-400 font-bold">${qual}</span>`;
-            }
-
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 4000);
-        }
-
-        setInterval(triggerLiveActivityPopup, 11000);
     </script>
 </body>
 </html>

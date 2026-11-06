@@ -18,130 +18,60 @@
             color: #ffffff;
             overflow-x: hidden;
         }
-
-        /* Animated Background Gradients */
         .bg-glow-1 {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(244, 63, 94, 0.25) 0%, rgba(139, 92, 246, 0.15) 50%, transparent 70%);
-            filter: blur(90px);
-            z-index: 0;
-            pointer-events: none;
+            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+            width: 700px; height: 700px; background: radial-gradient(circle, rgba(244, 63, 94, 0.25) 0%, rgba(139, 92, 246, 0.15) 50%, transparent 70%);
+            filter: blur(90px); z-index: 0; pointer-events: none;
         }
         .bg-glow-2 {
-            position: absolute;
-            top: 45%;
-            left: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
-            filter: blur(80px);
-            z-index: 0;
-            pointer-events: none;
+            position: absolute; top: 45%; left: -150px;
+            width: 500px; height: 500px; background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+            filter: blur(80px); z-index: 0; pointer-events: none;
         }
-
         .gradient-text {
             background: linear-gradient(135deg, #ff4b72 0%, #a855f7 50%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        /* Glassmorphism Styling */
         .glass-card {
-            background: rgba(22, 25, 54, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(22, 25, 54, 0.7); backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .glass-card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .glass-card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(244, 63, 94, 0.5);
-            box-shadow: 0 15px 35px -10px rgba(244, 63, 94, 0.35);
-        }
-
         .btn-gradient {
             background: linear-gradient(135deg, #f43f5e 0%, #d946ef 100%);
-            background-size: 200% 200%;
-            transition: all 0.3s ease;
+            background-size: 200% 200%; transition: all 0.3s ease;
         }
-        .btn-gradient:hover {
-            background-position: right center;
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.5);
-        }
-
-        .step-badge {
-            background: linear-gradient(135deg, #f43f5e, #8b5cf6);
-            box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
-            animation: pulse-glow 2s infinite alternate;
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); }
-            100% { box-shadow: 0 0 25px rgba(139, 92, 246, 0.8); }
-        }
-
+        .btn-gradient:hover { background-position: right center; box-shadow: 0 0 25px rgba(244, 63, 94, 0.5); }
         .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #f43f5e;
-            animation: spin 0.8s linear infinite;
+            border: 3px solid rgba(255, 255, 255, 0.1); width: 36px; height: 36px;
+            border-radius: 50%; border-left-color: #f43f5e; animation: spin 0.8s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .floating-icon {
-            animation: float 3.5s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="flex flex-col min-h-screen relative pb-16 sm:pb-0">
+<body class="flex flex-col min-h-screen relative pb-16">
 
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
 
     <!-- Header -->
     <header class="w-full py-4 px-4 sm:px-8 border-b border-white/10 flex justify-between items-center bg-[#0d0f22]/80 backdrop-blur-xl sticky top-0 z-40">
-        <div class="flex items-center space-x-2">
-            <span class="text-2xl sm:text-3xl font-extrabold tracking-wider text-rose-500 flex items-center gap-2">
-                <i class="fa-brands fa-youtube text-3xl text-rose-500 animate-pulse"></i>
-                <span class="gradient-text font-black">TM.Studio</span>
-            </span>
-        </div>
-        <div class="flex items-center space-x-3">
-            <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-[#1a1c38] text-white border border-rose-500/50 text-xs sm:text-sm rounded-xl px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-rose-500 cursor-pointer shadow-lg">
-                <option value="bn" selected>🇧🇩 বাংলা (BN)</option>
-                <option value="en">🇺🇸 English (EN)</option>
-            </select>
-        </div>
+        <span class="text-2xl sm:text-3xl font-extrabold tracking-wider text-rose-500 flex items-center gap-2">
+            <i class="fa-brands fa-youtube text-3xl text-rose-500 animate-pulse"></i>
+            <span class="gradient-text font-black">TM.Studio</span>
+        </span>
     </header>
 
     <!-- Main Section -->
     <main class="flex-grow flex flex-col items-center justify-start px-4 py-8 sm:py-12 max-w-5xl mx-auto w-full z-10">
 
-        <!-- Title Section -->
         <div class="text-center mb-8">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-4 backdrop-blur-md">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-4">
                 <i class="fa-solid fa-bolt text-amber-400"></i> Fast, Free & HD Video Downloader
             </div>
-            <h1 id="mainTitle" class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4 text-white leading-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4 text-white leading-tight">
                 ইউটিউব ভিডিও ডাউনলোডার
             </h1>
-            <p id="mainSubtitle" class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
                 সহজেই সেরা কোয়ালিটিতে ইউটিউব থেকে ভিডিও এবং অডিও দেখে ডাউনলোড করুন সম্পূর্ণ ফ্রিতে!
             </p>
         </div>
@@ -160,9 +90,6 @@
                         class="w-full py-4 sm:py-5 pl-12 pr-16 text-gray-100 bg-[#161836]/90 border-2 border-rose-500/40 rounded-2xl focus:outline-none focus:border-rose-500 focus:ring-4 focus:ring-rose-500/30 text-sm sm:text-base transition-all shadow-2xl placeholder-gray-400"
                         required
                     />
-                    <button type="button" onclick="clearInput()" id="clearBtn" class="hidden absolute right-16 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white p-2">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
                 </div>
                 <button 
                     type="submit" 
@@ -170,554 +97,144 @@
                     class="absolute right-2 top-1/2 -translate-y-1/2 btn-gradient text-white p-3.5 sm:px-6 sm:py-3.5 rounded-xl shadow-lg hover:scale-105 transition-all flex items-center justify-center font-bold"
                 >
                     <i class="fa-solid fa-magnifying-glass text-lg sm:mr-1"></i>
-                    <span id="searchBtnText" class="hidden sm:inline">Search</span>
+                    <span class="hidden sm:inline">Search</span>
                 </button>
             </form>
-            
-            <div class="flex items-center justify-center gap-3 mt-4 text-xs text-gray-400">
-                <span id="safeText" class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> সুরক্ষিত ও স্ক্যানকৃত</span>
-                <span class="text-gray-600">|</span>
-                <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                    <i class="fa-solid fa-check-circle"></i> Norton™ Safe Web Verified
-                </span>
-            </div>
         </div>
 
         <!-- Loader -->
         <div id="loader" class="hidden flex-col items-center justify-center my-8">
             <div class="spinner mb-3"></div>
-            <p id="loadingText" class="text-sm text-rose-300 font-medium animate-pulse">ভিডিও তথ্য ও রেজুলেশন খোঁজা হচ্ছে...</p>
+            <p class="text-sm text-rose-300 font-medium animate-pulse">ভিডিও তথ্য ও রেজুলেশন খোঁজা হচ্ছে...</p>
         </div>
 
         <!-- Error Message Box -->
         <div id="errorMessage" class="hidden w-full max-w-3xl bg-rose-500/20 border border-rose-500/50 p-4 rounded-2xl text-center text-rose-300 mb-6 text-sm"></div>
 
         <!-- Download & Player Container -->
-        <div id="resultsContainer" class="hidden w-full max-w-3xl glass-card rounded-3xl p-5 sm:p-8 shadow-2xl border border-rose-500/30 transition-all duration-300 mb-12">
+        <div id="resultsContainer" class="hidden w-full max-w-3xl glass-card rounded-3xl p-5 sm:p-8 shadow-2xl border border-rose-500/30 mb-12">
             
             <div class="mb-8 border-b border-white/10 pb-6">
-                <h3 id="previewTitle" class="text-sm font-bold text-rose-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-play-circle"></i> ইন-অ্যাপ ভিডিও প্লেয়ার (Watch before download):
+                <h3 class="text-sm font-bold text-rose-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-play-circle"></i> ইন-অ্যাপ ভিডিও প্লেয়ার:
                 </h3>
                 <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border-2 border-rose-500/30">
-                    <iframe 
-                        id="videoEmbed" 
-                        class="w-full h-full" 
-                        src="" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <iframe id="videoEmbed" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <h4 id="videoTitleText" class="mt-4 font-bold text-gray-100 text-base sm:text-lg line-clamp-2">
-                    ইউটিউব ভিডিও ডাউনলোডার টেস্ট ভিডিও
-                </h4>
+                <h4 id="videoTitleText" class="mt-4 font-bold text-gray-100 text-base sm:text-lg line-clamp-2"></h4>
             </div>
 
-            <!-- Media Tabs -->
-            <div class="flex justify-center gap-3 mb-6 bg-[#0f1128] p-1.5 rounded-2xl border border-white/10">
-                <button id="videoTabBtn" onclick="switchMediaTab('video')" class="flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all btn-gradient text-white shadow-md">
-                    <i class="fa-solid fa-video"></i> Video (ভিডিও)
-                </button>
-                <button id="audioTabBtn" onclick="switchMediaTab('audio')" class="flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-400 hover:text-white hover:bg-white/5">
-                    <i class="fa-solid fa-music"></i> Audio / MP3 (অডিও)
-                </button>
-            </div>
-
-            <!-- Video Options Container -->
-            <div id="videoOptions" class="space-y-3">
-                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">উপলব্ধ ভিডিও কোয়ালিটি:</h4>
+            <!-- Resolution Formats List -->
+            <div class="space-y-3">
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">উপলব্ধ ভিডিও কোয়ালিটি ও রেজুলেশন:</h4>
                 <div id="videoFormatsList" class="space-y-3">
-                    <!-- Dynamic Video Formats -->
-                </div>
-            </div>
-
-            <!-- Audio Options Container -->
-            <div id="audioOptions" class="space-y-3 hidden">
-                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">উপলব্ধ অডিও ফরম্যাট:</h4>
-                <div id="audioFormatsList" class="space-y-3">
-                    <!-- Dynamic Audio Formats -->
+                    <!-- Dynamic Formats -->
                 </div>
             </div>
 
         </div>
-
-        <!-- How To Use Section -->
-        <section class="w-full max-w-4xl my-12">
-            <div class="text-center mb-10">
-                <span class="px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold uppercase tracking-widest">Guide</span>
-                <h2 id="howToUseTitle" class="text-3xl sm:text-4xl font-extrabold text-white mt-3">
-                    কিভাবে ভিডিও ডাউনলোড করবেন?
-                </h2>
-                <p id="howToUseSub" class="text-gray-400 text-sm mt-2 max-w-md mx-auto">মাত্র ৩টি সহজ ধাপে কোনো ঝামেলা ছাড়াই ভিডিও হাই-স্পিডে ডাউনলোড করুন</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative flex flex-col items-center text-center group border border-white/10">
-                    <div class="step-badge w-14 h-14 rounded-2xl text-white font-black text-2xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform">
-                        1
-                    </div>
-                    <div class="w-16 h-16 rounded-full bg-rose-500/10 text-rose-400 flex items-center justify-center text-3xl mb-4 floating-icon">
-                        <i class="fa-solid fa-copy"></i>
-                    </div>
-                    <h3 id="step1Head" class="font-extrabold text-xl text-white mb-2 group-hover:text-rose-400 transition-colors">লিঙ্ক কপি করুন</h3>
-                    <p id="step1Desc" class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                        ইউটিউব অ্যাপ বা ব্রাউজার থেকে আপনার পছন্দের যেকোনো ভিডিও বা শর্টসের লিঙ্কটি কপি করুন।
-                    </p>
-                </div>
-
-                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative flex flex-col items-center text-center group border-2 border-rose-500/40 bg-gradient-to-b from-rose-950/30 to-[#161836]">
-                    <div class="absolute -top-3 bg-gradient-to-r from-rose-500 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
-                        Step 2
-                    </div>
-                    <div class="step-badge w-14 h-14 rounded-2xl text-white font-black text-2xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform">
-                        2
-                    </div>
-                    <div class="w-16 h-16 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center text-3xl mb-4 floating-icon" style="animation-delay: 0.5s;">
-                        <i class="fa-solid fa-paste"></i>
-                    </div>
-                    <h3 id="step2Head" class="font-extrabold text-xl text-white mb-2 group-hover:text-rose-400 transition-colors">লিঙ্ক পেস্ট করুন</h3>
-                    <p id="step2Desc" class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                        TM.Studio-এর উপরে থাকা বক্সে কপি করা লিঙ্কটি পেস্ট করে সার্চ (Search) বাটনে চাপ দিন।
-                    </p>
-                </div>
-
-                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative flex flex-col items-center text-center group border border-white/10">
-                    <div class="step-badge w-14 h-14 rounded-2xl text-white font-black text-2xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform">
-                        3
-                    </div>
-                    <div class="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-3xl mb-4 floating-icon" style="animation-delay: 1s;">
-                        <i class="fa-solid fa-circle-down"></i>
-                    </div>
-                    <h3 id="step3Head" class="font-extrabold text-xl text-white mb-2 group-hover:text-rose-400 transition-colors">প্লে ও ডাউনলোড করুন</h3>
-                    <p id="step3Desc" class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                        ওয়েবসাইটের ভেতরেই প্লে করে দেখুন এবং আপনার পছন্দের HD রেজুলেশনে ডাউনলোড করে নিন।
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ratings & Reviews Section -->
-        <section class="w-full max-w-4xl my-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div class="glass-card p-4 rounded-2xl text-center border border-white/10 relative overflow-hidden">
-                    <div class="absolute top-2 right-2 flex items-center gap-1 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> LIVE
-                    </div>
-                    <h4 id="liveCounter" class="text-2xl sm:text-3xl font-black text-rose-400">10,245,890</h4>
-                    <p id="totalDownloadsText" class="text-xs text-gray-400 mt-1">মোট ডাউনলোড (লাইভ)</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center border border-white/10">
-                    <h4 class="text-2xl sm:text-3xl font-black text-purple-400">4.9 / 5</h4>
-                    <p class="text-xs text-gray-400">ইউজার রেটিং</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center border border-white/10">
-                    <h4 class="text-2xl sm:text-3xl font-black text-emerald-400">100%</h4>
-                    <p class="text-xs text-gray-400">সুরক্ষিত ও ফ্রি</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center border border-white/10">
-                    <h4 class="text-2xl sm:text-3xl font-black text-blue-400">Ultra Fast</h4>
-                    <p class="text-xs text-gray-400">হাই-স্পিড সার্ভার</p>
-                </div>
-            </div>
-
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full mb-3">
-                    <div class="flex text-amber-400 text-sm">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <span class="text-amber-400 text-sm font-bold ml-2">4.9 / 5.0 Rating</span>
-                </div>
-                <h2 id="reviewsHeading" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">ব্যবহারকারীদের মতামত ও প্রশংসা</h2>
-                <p id="reviewsSubheading" class="text-gray-400 text-sm">বিশ্বজুড়ে প্রতিদিন ব্যবহারকারীদের দেওয়া অসাধারণ রিভিউ!</p>
-            </div>
-
-            <!-- Reviews Grid -->
-            <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg relative transition-all duration-500">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-rose-500 to-purple-600 text-white flex items-center justify-center font-bold text-lg shadow-md">ত</div>
-                            <div>
-                                <h4 class="font-bold text-white text-sm">তানজিম আহমেদ</h4>
-                                <div class="flex text-amber-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[10px] text-gray-500">১ মিনিট আগে</span>
-                    </div>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        "TM.Studio অত্যন্ত দ্রুত কাজ করে! ভিডিও ডাউনলোডের আগে প্লে করে দেখা যায় এটা আমার সবথেকে বেশি ভালো লেগেছে।"
-                    </p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg relative transition-all duration-500">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md">R</div>
-                            <div>
-                                <h4 class="font-bold text-white text-sm">Rahim Chowdhury</h4>
-                                <div class="flex text-amber-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[10px] text-gray-500">৩ মিনিট আগে</span>
-                    </div>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        "Best downloader site I have ever used. Quality 1080p video downloads smoothly without any hassle."
-                    </p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl border border-white/10 shadow-lg relative transition-all duration-500">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-md">স</div>
-                            <div>
-                                <h4 class="font-bold text-white text-sm">সাবরিনা সুলতানা</h4>
-                                <div class="flex text-amber-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[10px] text-gray-500">৫ মিনিট আগে</span>
-                    </div>
-                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        "মোবাইল এবং পিসি দুটোতেই দারুণ কাজ করে। অ্যাপ অপশন দিয়ে ডাউনলোড করা আরও সহজ হয়েছে!"
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- App Download Banner -->
-        <section class="w-full max-w-4xl my-10 bg-gradient-to-r from-rose-950/80 via-purple-950/80 to-indigo-950/80 border-2 border-rose-500/40 rounded-3xl p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
-            <div class="text-center sm:text-left z-10">
-                <span class="bg-rose-500/30 text-rose-300 text-xs px-3 py-1 rounded-full font-bold border border-rose-500/40 uppercase tracking-widest">Official Android App</span>
-                <h3 id="appBannerTitle" class="text-2xl sm:text-3xl font-black text-white mt-3 mb-2">TM.Studio অ্যান্ড্রেয়েড অ্যাপ ইনস্টল করুন</h3>
-                <p id="appBannerDesc" class="text-gray-300 text-xs sm:text-sm max-w-lg">এক ক্লিকে যেকোনো ভিডিও দ্রুত হাই-স্পিডে ডাউনলোড করার জন্য আমাদের APK ইনস্টল করুন!</p>
-            </div>
-            <button onclick="downloadAppApk()" class="z-10 btn-gradient text-white px-8 py-4 rounded-2xl font-black text-base flex items-center justify-center gap-3 shadow-2xl hover:scale-105 transition-transform whitespace-nowrap">
-                <i class="fa-brands fa-android text-2xl"></i>
-                <span id="appBannerBtn">Download App (APK)</span>
-            </button>
-        </section>
 
     </main>
 
-    <footer class="w-full py-6 text-center text-xs text-gray-500 border-t border-white/10 bg-[#070814] relative z-10">
-        <p>© 2026 TM.Studio All Rights Reserved. Designed for fast and premium downloading.</p>
+    <footer class="w-full py-6 text-center text-xs text-gray-500 border-t border-white/10 bg-[#070814]">
+        <p>© 2026 TM.Studio All Rights Reserved. Professional Video Downloader.</p>
     </footer>
-
-    <!-- Sticky Mobile App Button -->
-    <div class="sm:hidden fixed bottom-0 left-0 right-0 bg-[#0d0f22]/95 border-t border-rose-500/40 p-3 flex items-center justify-between z-40 shadow-2xl backdrop-blur-xl">
-        <div class="flex items-center gap-2">
-            <i class="fa-brands fa-android text-emerald-400 text-2xl"></i>
-            <div>
-                <h5 class="text-xs font-bold text-white">TM.Studio APK</h5>
-                <p class="text-[10px] text-gray-400">Fast Video Downloader</p>
-            </div>
-        </div>
-        <button onclick="downloadAppApk()" class="btn-gradient text-white text-xs px-4 py-2.5 rounded-xl font-bold flex items-center gap-1.5 shadow-lg">
-            <i class="fa-solid fa-download"></i> <span id="stickyAppBtn">Download APK</span>
-        </button>
-    </div>
 
     <!-- PRE-DOWNLOAD AD MODAL -->
     <div id="preAdModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="bg-[#141632] border-2 border-rose-500/50 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative shadow-2xl">
-            <span class="absolute top-4 left-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest border border-white/10 px-2 py-0.5 rounded">Sponsored AD</span>
-            <div class="my-6 p-8 bg-gradient-to-tr from-rose-500/20 via-purple-500/20 to-amber-500/20 border border-rose-500/30 rounded-2xl">
-                <i class="fa-solid fa-rectangle-ad text-5xl text-amber-400 mb-3 animate-bounce"></i>
-                <h3 class="text-xl font-bold text-white mb-2">বিশেষ স্পনসরড বিজ্ঞাপন</h3>
-                <p class="text-xs text-gray-300">ভিডিও ডাউনলোডের জন্য প্রস্তুত থাকুন! আপনার ডাউনলোড লিঙ্ক প্রসেস হচ্ছে...</p>
-            </div>
-            <p class="text-xs text-gray-400 mb-4">বিজ্ঞাপন সংক্ষেপ হতে বাকি: <span id="adTimer" class="font-bold text-rose-400 text-base">5</span> সেকেন্ড</p>
-            <button id="skipAdBtn" onclick="startActualDownload()" disabled class="w-full py-3.5 bg-gray-700 text-gray-400 font-bold rounded-xl cursor-not-allowed transition-all">
-                বিজ্ঞাপন সংক্ষেপ করা হচ্ছে...
-            </button>
+            <h3 class="text-xl font-bold text-white mb-2">বিজ্ঞাপন প্রসেসিং হচ্ছে...</h3>
+            <p class="text-xs text-gray-300 mb-4">আপনার ডাউনলোড লিঙ্ক প্রস্তুত হতে বাকি: <span id="adTimer" class="font-bold text-rose-400 text-base">3</span> সেকেন্ড</p>
+            <button id="skipAdBtn" onclick="startActualDownload()" disabled class="w-full py-3.5 bg-gray-700 text-gray-400 font-bold rounded-xl cursor-not-allowed">দয়া করে অপেক্ষা করুন...</button>
         </div>
-    </div>
-
-    <!-- POST-DOWNLOAD AD MODAL -->
-    <div id="postAdModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="bg-[#141632] border-2 border-emerald-500/50 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative shadow-2xl">
-            <button onclick="closePostAd()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="my-4 p-6 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
-                <i class="fa-solid fa-circle-check text-5xl text-emerald-400 mb-3"></i>
-                <h3 id="postAdTitle" class="text-xl font-bold text-white mb-1">ডাউনলোড সম্পন্ন হয়েছে!</h3>
-                <p id="postAdDesc" class="text-xs text-gray-300">আমাদের TM.Studio অ্যাপ ব্যবহার করে ১-ক্লিকে আরও দ্রুত ডাউনলোড করুন!</p>
-            </div>
-            <div class="p-4 bg-purple-900/30 border border-purple-500/30 rounded-xl mb-6 text-left">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-bolt text-2xl text-amber-400"></i>
-                    <div>
-                        <h4 class="text-xs font-bold text-white">TM.Studio Premium Pro</h4>
-                        <p class="text-[10px] text-gray-300">বিজ্ঞাপন ছাড়া ডাউনলোড করুন অতি দ্রুত।</p>
-                    </div>
-                </div>
-            </div>
-            <button onclick="closePostAd()" class="w-full py-3 btn-gradient text-white font-bold rounded-xl text-sm shadow-lg">
-                বন্ধ করুন (Close)
-            </button>
-        </div>
-    </div>
-
-    <!-- Toast activity popup -->
-    <div id="liveActivityToast" class="fixed bottom-20 left-4 bg-[#141632]/90 backdrop-blur-md border border-rose-500/40 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-500 z-40">
-        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
-        <p id="liveActivityText" class="text-xs text-gray-200">
-            <span class="font-bold text-white">হাসান (ঢাকা)</span> মাত্র <span class="text-rose-400 font-bold">1080p HD</span> ভিডিও ডাউনলোড করেছেন
-        </p>
     </div>
 
     <script>
-        // আপনার রেন্ডার লাইভ ব্যাকএন্ড সার্ভারের বেস ইউআরএল
         const BACKEND_URL = 'https://tmstudio-server.onrender.com';
-
-        let currentLang = 'bn';
         let pendingDownloadUrl = '';
         let adCountdownInterval;
 
-        const translations = {
-            bn: {
-                mainTitle: "ইউটিউব ভিডিও ডাউনলোডার",
-                mainSubtitle: "সহজেই সেরা কোয়ালিটিতে ইউটিউব থেকে ভিডিও এবং অডিও দেখে ডাউনলোড করুন সম্পূর্ণ ফ্রিতে!",
-                placeholder: "ইউটিউব ভিডিও লিঙ্ক এখানে পেস্ট করুন...",
-                searchBtn: "Search",
-                safeText: '<i class="fa-solid fa-shield-halved text-emerald-400"></i> সুরক্ষিত ও স্ক্যানকৃত',
-                loadingText: "সার্ভার থেকে ভিডিও তথ্য ও রেজুলেশন আনা হচ্ছে...",
-                previewTitle: '<i class="fa-solid fa-play-circle"></i> ইন-অ্যাপ ভিডিও প্লেয়ার (Watch before download):',
-                howToUseTitle: "কিভাবে ভিডিও ডাউনলোড করবেন?",
-                howToUseSub: "মাত্র ৩টি সহজ ধাপে কোনো ঝামেলা ছাড়াই ভিডিও হাই-স্পিডে ডাউনলোড করুন",
-                step1Head: "লিঙ্ক কপি করুন",
-                step1Desc: "ইউটিউব অ্যাপ বা ব্রাউজার থেকে আপনার পছন্দের যেকোনো ভিডিও বা শর্টসের লিঙ্কটি কপি করুন।",
-                step2Head: "লিঙ্ক পেস্ট করুন",
-                step2Desc: "TM.Studio-এর উপরে থাকা বক্সে কপি করা লিঙ্কটি পেস্ট করে সার্চ (Search) বাটনে চাপ দিন।",
-                step3Head: "প্লে ও ডাউনলোড করুন",
-                step3Desc: "ওয়েবসাইটের ভেতরেই প্লে করে দেখুন এবং আপনার পছন্দের HD রেজুলেশনে ডাউনলোড করে নিন।",
-                reviewsHeading: "ব্যবহারকারীদের মতামত ও প্রশংসা",
-                reviewsSubheading: "বিশ্বজুড়ে প্রতিদিন ব্যবহারকারীদের দেওয়া অসাধারণ রিভিউ!",
-                totalDownloadsText: "মোট ডাউনলোড (লাইভ)",
-                appBannerTitle: "TM.Studio অ্যান্ড্রেয়েড অ্যাপ ইনস্টল করুন",
-                appBannerDesc: "এক ক্লিকে যেকোনো ভিডিও দ্রুত হাই-স্পিডে ডাউনলোড করার জন্য আমাদের APK ইনস্টল করুন!",
-                appBannerBtn: "Download App (APK)",
-                stickyAppBtn: "Download APK",
-                downloadBtnText: "ডাউনলোড"
-            },
-            en: {
-                mainTitle: "YouTube Video Downloader",
-                mainSubtitle: "Watch & download YouTube videos and audio in highest quality easily for free!",
-                placeholder: "Paste YouTube video link here...",
-                searchBtn: "Search",
-                safeText: '<i class="fa-solid fa-shield-halved text-emerald-400"></i> Safe & Scanned',
-                loadingText: "Fetching video info & resolutions from server...",
-                previewTitle: '<i class="fa-solid fa-play-circle"></i> In-App Video Player (Watch before download):',
-                howToUseTitle: "How to Download Video?",
-                howToUseSub: "Download videos in high speed effortlessly in 3 simple steps",
-                step1Head: "Copy Link",
-                step1Desc: "Copy your favorite YouTube video or Shorts link from the YouTube app or browser.",
-                step2Head: "Paste Link",
-                step2Desc: "Paste the link into the TM.Studio box above and click the Search button.",
-                step3Head: "Play & Download",
-                step3Desc: "Watch the video inside our web player and download in your preferred HD quality.",
-                reviewsHeading: "User Feedback & Reviews",
-                reviewsSubheading: "Awesome reviews given by users around the globe every day!",
-                totalDownloadsText: "Total Downloads (Live)",
-                appBannerTitle: "Install TM.Studio Android App",
-                appBannerDesc: "Install our official APK to download videos faster with 1-click!",
-                appBannerBtn: "Download App (APK)",
-                stickyAppBtn: "Download APK",
-                downloadBtnText: "Download"
-            }
-        };
-
-        function changeLanguage(lang) {
-            currentLang = lang;
-            const data = translations[lang];
-
-            document.getElementById('mainTitle').textContent = data.mainTitle;
-            document.getElementById('mainSubtitle').textContent = data.mainSubtitle;
-            document.getElementById('videoUrl').placeholder = data.placeholder;
-            document.getElementById('searchBtnText').textContent = data.searchBtn;
-            document.getElementById('safeText').innerHTML = data.safeText;
-            document.getElementById('loadingText').textContent = data.loadingText;
-            document.getElementById('previewTitle').innerHTML = data.previewTitle;
-            document.getElementById('howToUseTitle').textContent = data.howToUseTitle;
-            document.getElementById('howToUseSub').textContent = data.howToUseSub;
-            document.getElementById('step1Head').textContent = data.step1Head;
-            document.getElementById('step1Desc').textContent = data.step1Desc;
-            document.getElementById('step2Head').textContent = data.step2Head;
-            document.getElementById('step2Desc').textContent = data.step2Desc;
-            document.getElementById('step3Head').textContent = data.step3Head;
-            document.getElementById('step3Desc').textContent = data.step3Desc;
-            document.getElementById('reviewsHeading').textContent = data.reviewsHeading;
-            document.getElementById('reviewsSubheading').textContent = data.reviewsSubheading;
-            document.getElementById('totalDownloadsText').textContent = data.totalDownloadsText;
-            document.getElementById('appBannerTitle').textContent = data.appBannerTitle;
-            document.getElementById('appBannerDesc').textContent = data.appBannerDesc;
-            document.getElementById('appBannerBtn').textContent = data.appBannerBtn;
-            document.getElementById('stickyAppBtn').textContent = data.stickyAppBtn;
-
-            document.querySelectorAll('.downloadBtnText').forEach(el => {
-                el.textContent = data.downloadBtnText;
-            });
-        }
-
-        const videoInput = document.getElementById('videoUrl');
-        const clearBtn = document.getElementById('clearBtn');
-        videoInput.addEventListener('input', function() {
-            clearBtn.classList.toggle('hidden', !this.value);
-        });
-
-        function clearInput() {
-            videoInput.value = '';
-            clearBtn.classList.add('hidden');
-        }
-
-        // রেন্ডার ব্যাকএন্ড এপিআই কল করার মূল ফাংশন
         async function handleProcess(e) {
             e.preventDefault();
-            const url = videoInput.value.trim();
+            const url = document.getElementById('videoUrl').value.trim();
             if (!url) return;
 
             const loader = document.getElementById('loader');
             const resultsContainer = document.getElementById('resultsContainer');
             const errorBox = document.getElementById('errorMessage');
 
-            loader.classList.remove('hidden');
-            loader.classList.add('flex');
-            resultsContainer.classList.add('hidden');
-            errorBox.classList.add('hidden');
+            loader.classList.remove('hidden'); loader.classList.add('flex');
+            resultsContainer.classList.add('hidden'); errorBox.classList.add('hidden');
 
             try {
                 const response = await fetch(`${BACKEND_URL}/api/download?url=${encodeURIComponent(url)}`);
                 const data = await response.json();
 
-                loader.classList.remove('flex');
-                loader.classList.add('hidden');
+                loader.classList.remove('flex'); loader.classList.add('hidden');
 
                 if (data.status === 'success') {
-                    // ভিডিও এম্বেড প্লেয়ার ও টাইটেল সেট করা
-                    // ইউটিউব লিংকের জন্য সঠিক এম্বেড আইডি বের করা
                     let embedUrl = url;
                     if (url.includes('youtu.be/')) {
-                        const videoId = url.split('youtu.be/')[1].split('?')[0];
-                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                        const id = url.split('youtu.be/')[1].split('?')[0];
+                        embedUrl = `https://www.youtube.com/embed/${id}`;
                     } else if (url.includes('watch?v=')) {
-                        const videoId = url.split('watch?v=')[1].split('&')[0];
-                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                        const id = url.split('watch?v=')[1].split('&')[0];
+                        embedUrl = `https://www.youtube.com/embed/${id}`;
                     }
 
                     document.getElementById('videoEmbed').src = embedUrl;
                     document.getElementById('videoTitleText').textContent = data.title;
 
-                    const videoFormatsList = document.getElementById('videoFormatsList');
-                    const audioFormatsList = document.getElementById('audioFormatsList');
-                    videoFormatsList.innerHTML = '';
-                    audioFormatsList.innerHTML = '';
+                    const formatsList = document.getElementById('videoFormatsList');
+                    formatsList.innerHTML = '';
 
-                    // ফরম্যাটগুলো রেন্ডার করা
-                    if (data.formats && data.formats.length > 0) {
-                        data.formats.forEach(f => {
-                            const itemHtml = `
-                                <div class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/50 hover:bg-white/10 transition-all">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm">
-                                            <i class="fa-solid fa-film"></i>
-                                        </div>
-                                        <div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="font-black text-white text-base">${f.resolution}</span>
-                                                <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">${f.ext.toUpperCase()}</span>
-                                            </div>
-                                            <span class="text-xs text-gray-400">${f.filesize}</span>
-                                        </div>
-                                    </div>
-                                    <button onclick="triggerAdBeforeDownload('${f.url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
-                                        <i class="fa-solid fa-download"></i> <span class="downloadBtnText">${currentLang === 'bn' ? 'ডাউনলোড' : 'Download'}</span>
-                                    </button>
-                                </div>
-                            `;
-                            videoFormatsList.innerHTML += itemHtml;
-                        });
-
-                        // অডিও অপশনের জন্য সেই একই লিংক ব্যবহার করা
-                        audioFormatsList.innerHTML = `
-                            <div class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/50 hover:bg-white/10 transition-all">
+                    data.formats.forEach(f => {
+                        formatsList.innerHTML += `
+                            <div class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/50 hover:bg-white/10 transition-all">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm">
-                                        <i class="fa-solid fa-music"></i>
+                                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-film"></i>
                                     </div>
                                     <div>
                                         <div class="flex items-center gap-2">
-                                            <span class="font-black text-white text-base">MP3 High Quality</span>
-                                            <span class="bg-purple-500/20 text-purple-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-500/30">MP3</span>
+                                            <span class="font-black text-white text-base">${f.resolution}</span>
+                                            <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">${f.ext.toUpperCase()}</span>
                                         </div>
-                                        <span class="text-xs text-gray-400">Audio Format</span>
+                                        <span class="text-xs text-gray-400">${f.filesize}</span>
                                     </div>
                                 </div>
-                                <button onclick="triggerAdBeforeDownload('${data.formats[0].url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
-                                    <i class="fa-solid fa-download"></i> <span class="downloadBtnText">${currentLang === 'bn' ? 'ডাউনলোড' : 'Download'}</span>
+                                <button onclick="triggerAd('${f.url}')" class="btn-gradient text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg cursor-pointer">
+                                    <i class="fa-solid fa-download"></i> ডাউনলোড
                                 </button>
                             </div>
                         `;
-                    }
+                    });
 
                     resultsContainer.classList.remove('hidden');
                     resultsContainer.scrollIntoView({ behavior: 'smooth' });
-
                 } else {
                     errorBox.textContent = data.message || 'ভিডিও প্রসেস করা সম্ভব হয়নি।';
                     errorBox.classList.remove('hidden');
                 }
-
             } catch (err) {
-                loader.classList.remove('flex');
-                loader.classList.add('hidden');
-                errorBox.textContent = currentLang === 'bn' ? 'সার্ভার কানেক্ট করতে সমস্যা হচ্ছে। দয়া করে আবার চেষ্টা করুন।' : 'Failed to connect server. Please try again.';
-                errorBox.classList.remove('hidden');
+                loader.classList.remove('flex'); loader.classList.add('hidden');
+                errorBox.textContent = 'সার্ভার কানেক্ট করতে সমস্যা হচ্ছে।';
+                errorBox.classList.add('hidden');
             }
         }
 
-        function switchMediaTab(type) {
-            const videoTab = document.getElementById('videoTabBtn');
-            const audioTab = document.getElementById('audioTabBtn');
-            const videoOpts = document.getElementById('videoOptions');
-            const audioOpts = document.getElementById('audioOptions');
-
-            if (type === 'video') {
-                videoTab.className = "flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all btn-gradient text-white shadow-md";
-                audioTab.className = "flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-400 hover:text-white hover:bg-white/5";
-                videoOpts.classList.remove('hidden');
-                audioOpts.classList.add('hidden');
-            } else {
-                audioTab.className = "flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all btn-gradient text-white shadow-md";
-                videoTab.className = "flex-1 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-400 hover:text-white hover:bg-white/5";
-                audioOpts.classList.remove('hidden');
-                videoOpts.classList.add('hidden');
-            }
-        }
-
-        function triggerAdBeforeDownload(downloadUrl) {
-            pendingDownloadUrl = downloadUrl;
+        function triggerAd(url) {
+            pendingDownloadUrl = url;
             const modal = document.getElementById('preAdModal');
             const timerEl = document.getElementById('adTimer');
             const skipBtn = document.getElementById('skipAdBtn');
 
             modal.classList.remove('hidden');
-            let timeLeft = 5;
+            let timeLeft = 3;
             timerEl.textContent = timeLeft;
             skipBtn.disabled = true;
-            skipBtn.className = "w-full py-3.5 bg-gray-700 text-gray-400 font-bold rounded-xl cursor-not-allowed transition-all";
-            skipBtn.textContent = currentLang === 'bn' ? "বিজ্ঞাপন সংক্ষেপ করা হচ্ছে..." : "Processing Ad...";
+            skipBtn.className = "w-full py-3.5 bg-gray-700 text-gray-400 font-bold rounded-xl cursor-not-allowed";
+            skipBtn.textContent = "দয়া করে অপেক্ষা করুন...";
 
             clearInterval(adCountdownInterval);
             adCountdownInterval = setInterval(() => {
@@ -726,8 +243,8 @@
                 if (timeLeft <= 0) {
                     clearInterval(adCountdownInterval);
                     skipBtn.disabled = false;
-                    skipBtn.className = "w-full py-3.5 btn-gradient text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg cursor-pointer";
-                    skipBtn.textContent = currentLang === 'bn' ? "ডাউনলোড শুরু করুন (Start Download)" : "Start Download Now";
+                    skipBtn.className = "w-full py-3.5 btn-gradient text-white font-bold rounded-xl cursor-pointer shadow-lg";
+                    skipBtn.textContent = "ডাউনলোড শুরু করুন (Start Download)";
                 }
             }, 1000);
         }
@@ -735,30 +252,7 @@
         function startActualDownload() {
             document.getElementById('preAdModal').classList.add('hidden');
             window.open(pendingDownloadUrl, '_blank');
-
-            setTimeout(() => {
-                document.getElementById('postAdModal').classList.remove('hidden');
-            }, 1000);
         }
-
-        function closePostAd() {
-            document.getElementById('postAdModal').classList.add('hidden');
-        }
-
-        function downloadAppApk() {
-            alert(currentLang === 'bn' ? 'TM.Studio APK খুব শীঘ্রই রিলিজ করা হবে!' : 'TM.Studio APK coming soon!');
-        }
-
-        // Live Counter Engine
-        let currentDownloads = 10245890;
-        function updateLiveCounter() {
-            currentDownloads += Math.floor(Math.random() * 4) + 1;
-            const counterEl = document.getElementById('liveCounter');
-            if (counterEl) {
-                counterEl.textContent = currentDownloads.toLocaleString();
-            }
-        }
-        setInterval(updateLiveCounter, 2000);
     </script>
 </body>
 </html>
